@@ -1,0 +1,3 @@
+![Logo](logo.png)
+
+# PSColorizer
