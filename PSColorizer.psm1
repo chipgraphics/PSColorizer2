@@ -14,8 +14,10 @@ function Write-Colorized {
         [ConsoleColor]$DefaultColor
     )
 
+    $last_color = $Host.UI.RawUI.ForegroundColor
+
     if (!$DefaultColor) {
-        $DefaultColor = $Host.UI.RawUI.ForegroundColor
+        $DefaultColor = $last_color
     }
 
     [MatchCollection]$matches = $Regexp.Matches($InputObject)
@@ -44,7 +46,7 @@ function Write-Colorized {
 
         Set-ConsoleColor -Color $colored_messages[$colored_messages.Length - 1]['color']
         Write-Message -Text $colored_messages[$colored_messages.Length - 1]['text'] -NewLine
-        Set-ConsoleColor -Color $DefaultColor
+        Set-ConsoleColor -Color $last_color
     } else {
         Write-Message -Text $InputObject -NewLine
     }
