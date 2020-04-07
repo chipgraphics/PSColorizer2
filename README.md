@@ -38,6 +38,10 @@ Since module uses single regular expression to extract color tags, without any s
 
 ![readme-example-3](https://i.imgur.com/ktZoKU9.png)
 
+In that case, desired behaviour can be achieved by using tags in sequence:
+
+![readme-example-3.1](https://i.imgur.com/7g8NeRn.png)
+
 You can specify default color which will be used outside of color tags:
 
 ![readme-example-4](https://i.imgur.com/V6mPNZs.png)
