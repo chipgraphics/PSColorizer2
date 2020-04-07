@@ -8,9 +8,9 @@ $Regexp = [regex]::new($Regexp_Pattern, [RegexOptions]::IgnoreCase)
 function Write-Colorized {
     [CmdletBinding(PositionalBinding = $true, HelpUri = 'https://github.com/2chevskii/PSColorizer#README')]
     param (
-        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, ValueFromRemainingArguments = $true)]
+        [Parameter(Mandatory, Position = 0, ValueFromPipeline)]
         [string]$InputObject,
-        [Parameter(Mandatory = $false, ValueFromPipelineByPropertyName = $true, ValueFromRemainingArguments = $false, Position = 1)]
+        [Parameter(Position = 1, ValueFromPipeline)]
         [ConsoleColor]$DefaultColor
     )
 
@@ -52,6 +52,7 @@ function Write-Colorized {
 
 function Write-Message {
     param(
+        [Parameter(Mandatory)]
         [string]$Text,
         [switch]$NewLine
     )
@@ -65,6 +66,7 @@ function Write-Message {
 
 function Set-ConsoleColor {
     param(
+        [Parameter(Mandatory)]
         [ConsoleColor]$Color
     )
 
