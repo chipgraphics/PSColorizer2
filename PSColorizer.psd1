@@ -42,6 +42,6 @@
         }
 
     }
-    HelpInfoURI       = 'https://github.com/2chevskii/PSColorizer#README'
+    HelpInfoURI       = 'https://github.com/2chevskii/PSColorizer#readme'
 }
 
