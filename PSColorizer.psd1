@@ -5,27 +5,27 @@
 #
 # Generated on: 07.04.2020
 #
+# Updated on: 10.09.2021
+#
 
 @{
     RootModule        = 'PSColorizer.psm1'
 
-    ModuleVersion     = '1.0.0'
+    ModuleVersion     = '1.1.0'
 
     GUID              = 'f1cdadff-6d3e-4ae8-bfe6-98b7717a72c2'
 
     Author            = '2CHEVSKII'
 
-    CompanyName       = 'Unknown'
+    CompanyName       = 'None'
 
-    Copyright         = '© 2020 2CHEVSKII. Distributed under the MIT license terms.'
+    Copyright         = '(c) 2020-2021 2CHEVSKII. Distributed under the MIT license terms.'
 
     Description       = 'Outputs color-formatted messages to console.'
 
     PowerShellVersion = '5.1'
 
-    FunctionsToExport = 'Write-Colorized'
-
-    CmdletsToExport   = 'Write-Colorized'
+    FunctionsToExport   = 'Write-Colorized'
 
     AliasesToExport   = 'wc', 'colorize'
 
@@ -44,4 +44,3 @@
     }
     HelpInfoURI       = 'https://github.com/2chevskii/PSColorizer#readme'
 }
-

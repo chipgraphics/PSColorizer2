@@ -9,18 +9,18 @@ function Write-Colorized {
     [CmdletBinding(PositionalBinding = $true, HelpUri = 'https://github.com/2chevskii/PSColorizer#README')]
     param (
         [Parameter(Mandatory, Position = 0, ValueFromPipeline)]
-        [string]$InputObject,
+        [string]$Message,
         [Parameter(Position = 1, ValueFromPipeline)]
         [ConsoleColor]$DefaultColor
     )
 
-    $last_color = $Host.UI.RawUI.ForegroundColor
+    $last_color = [Console]::ForegroundColor
 
     if (!$DefaultColor) {
         $DefaultColor = $last_color
     }
 
-    [MatchCollection]$matches = $Regexp.Matches($InputObject)
+    [MatchCollection]$matches = $Regexp.Matches($Message)
 
     if ($matches.Count -gt 0) {
         $colored_messages = @()
@@ -48,7 +48,7 @@ function Write-Colorized {
         Write-Message -Text $colored_messages[$colored_messages.Length - 1]['text'] -NewLine
         Set-ConsoleColor -Color $last_color
     } else {
-        Write-Message -Text $InputObject -NewLine
+        Write-Message -Text $Message -NewLine
     }
 }
 
@@ -74,3 +74,8 @@ function Set-ConsoleColor {
 
     [Console]::ForegroundColor = $Color
 }
+
+Set-Alias -Name 'wc' -Value 'Write-Colorized'
+Set-Alias -Name 'colorize' -Value 'Write-Colorized'
+
+Export-ModuleMember -Function 'Write-Colorized' -Alias 'wc', 'colorize'
