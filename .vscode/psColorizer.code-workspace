@@ -1,0 +1,12 @@
+{
+    "folders": [
+        {
+            "name": "PSColorizer",
+            "path": "../"
+        }
+    ],
+    "settings": {
+        "powershell.scriptAnalysis.enable": true,
+        "powershell.scriptAnalysis.settingsPath": "PSScriptAnalyzerSettings.psd1"
+    }
+}
