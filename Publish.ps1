@@ -33,4 +33,4 @@ if($null -ne $analysis) {
 }
 
 Write-Colorized 'Publishing module...'
-Publish-Module -Path '../PSColorizer' -NuGetApiKey $api_key -Verbose
+Publish-Module -Path '.' -NuGetApiKey $api_key -Verbose
