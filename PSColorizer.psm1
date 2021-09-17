@@ -23,77 +23,85 @@ Color which will be used on message parts, which do not have explicit color spec
 Hello <red>World</red>! -> 'World' will be written in red.
 #>
 function Write-Colorized {
-    [CmdletBinding(PositionalBinding = $true, HelpUri = 'https://github.com/2chevskii/PSColorizer#README')]
-    param (
-        [Parameter(Mandatory, Position = 0, ValueFromPipeline)]
-        [string]$Message,
-        [Parameter(Position = 1, ValueFromPipeline)]
-        [ConsoleColor]$DefaultColor
-    )
+  [CmdletBinding(PositionalBinding = $true, HelpUri = 'https://github.com/2chevskii/PSColorizer#README')]
+  param (
+    [Parameter(Mandatory, Position = 0, ValueFromPipeline)]
+    [string]$Message,
+    [Parameter(Position = 1, ValueFromPipeline)]
+    [ConsoleColor]$DefaultColor,
+    [Parameter]
+    [switch]$NoNewLine
+  )
 
-    begin {
-        $last_color = [Console]::ForegroundColor
+  begin {
+    $last_color = [Console]::ForegroundColor
 
-        if (!$DefaultColor) {
-            $DefaultColor = $last_color
-        }
-
-        [MatchCollection] $matches = $Regexp.Matches($Message)
+    if (!$DefaultColor) {
+      $DefaultColor = $last_color
     }
 
-    process {
-        if ($matches.Count -gt 0) {
-            $colored_messages = @()
+    [MatchCollection] $matches = $Regexp.Matches($Message)
+  }
 
-            foreach ($match in $matches) {
-                if ($match.Groups[3].Length -gt 0) {
-                    $colored_messages += @{
-                        'color' = $DefaultColor
-                        'text'  = $match.Groups[3].Value
-                    }
-                } else {
-                    $colored_messages += @{
-                        'color' = $match.Groups[1].Value
-                        'text'  = $match.Groups[2].Value
-                    }
-                }
-            }
+  process {
+    if ($matches.Count -gt 0) {
+      $colored_messages = @()
 
-            for ($i = 0; $i -lt $colored_messages.Length - 1; $i++) {
-                Set-ConsoleColor -Color $colored_messages[$i]['color']
-                Write-Message -Text $colored_messages[$i]['text']
-            }
-
-            Set-ConsoleColor -Color $colored_messages[$colored_messages.Length - 1]['color']
-            Write-Message -Text $colored_messages[$colored_messages.Length - 1]['text'] -NewLine
-            Set-ConsoleColor -Color $last_color
+      foreach ($match in $matches) {
+        if ($match.Groups[3].Length -gt 0) {
+          $colored_messages += @{
+            'color' = $DefaultColor
+            'text'  = $match.Groups[3].Value
+          }
         } else {
-            Write-Message -Text $Message -NewLine
+          $colored_messages += @{
+            'color' = $match.Groups[1].Value
+            'text'  = $match.Groups[2].Value
+          }
         }
+      }
+
+      for ($i = 0; $i -lt $colored_messages.Length - 1; $i++) {
+        Set-ConsoleColor -Color $colored_messages[$i]['color']
+        Write-Message -Text $colored_messages[$i]['text']
+      }
+
+      Set-ConsoleColor -Color $colored_messages[$colored_messages.Length - 1]['color']
+      if (!$NoNewLine) {
+        Write-Message -Text $colored_messages[$colored_messages.Length - 1]['text'] -NewLine
+      } else {
+        Write-Message -Text $colored_messages[$colored_messages.Length - 1]['text']
+      }
+      Set-ConsoleColor -Color $last_color
+    } elseif (!$NoNewLine) {
+      Write-Message -Text $Message -NewLine
+    } else {
+      Write-Message -Text $Message
     }
+  }
 }
 
 function Write-Message {
-    param(
-        [Parameter(Mandatory)]
-        [string]$Text,
-        [switch]$NewLine
-    )
+  param(
+    [Parameter(Mandatory)]
+    [string]$Text,
+    [switch]$NewLine
+  )
 
-    if ($NewLine) {
-        [Console]::WriteLine($Text)
-    } else {
-        [Console]::Write($Text)
-    }
+  if ($NewLine) {
+    [Console]::WriteLine($Text)
+  } else {
+    [Console]::Write($Text)
+  }
 }
 
 function Set-ConsoleColor {
-    param(
-        [Parameter(Mandatory)]
-        [ConsoleColor]$Color
-    )
+  param(
+    [Parameter(Mandatory)]
+    [ConsoleColor]$Color
+  )
 
-    [Console]::ForegroundColor = $Color
+  [Console]::ForegroundColor = $Color
 }
 
 Set-Alias -Name 'wc' -Value 'Write-Colorized'

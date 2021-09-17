@@ -9,38 +9,38 @@
 #
 
 @{
-    RootModule        = 'PSColorizer.psm1'
+  RootModule        = 'PSColorizer.psm1'
 
-    ModuleVersion     = '1.1.1'
+  ModuleVersion     = '1.2.0'
 
-    GUID              = 'f1cdadff-6d3e-4ae8-bfe6-98b7717a72c2'
+  GUID              = 'f1cdadff-6d3e-4ae8-bfe6-98b7717a72c2'
 
-    Author            = '2CHEVSKII'
+  Author            = '2CHEVSKII'
 
-    CompanyName       = 'None'
+  CompanyName       = 'None'
 
-    Copyright         = '(c) 2020-2021 2CHEVSKII. Distributed under the MIT license terms.'
+  Copyright         = '(c) 2020-2021 2CHEVSKII. Distributed under the MIT license terms.'
 
-    Description       = 'Outputs color-formatted messages to console.'
+  Description       = 'Outputs color-formatted messages to console.'
 
-    PowerShellVersion = '5.1'
+  PowerShellVersion = '5.1'
 
-    FunctionsToExport   = 'Write-Colorized'
+  FunctionsToExport = 'Write-Colorized'
 
-    AliasesToExport   = 'wc', 'colorize'
+  AliasesToExport   = 'wc', 'colorize'
 
-    PrivateData       = @{
+  PrivateData       = @{
 
-        PSData = @{
+    PSData = @{
 
-            LicenseUri = 'https://github.com/2chevskii/PSColorizer/blob/master/LICENSE'
+      LicenseUri = 'https://github.com/2chevskii/PSColorizer/blob/master/LICENSE'
 
-            ProjectUri = 'https://github.com/2chevskii/PSColorizer'
+      ProjectUri = 'https://github.com/2chevskii/PSColorizer'
 
-            IconUri    = 'https://github.com/2chevskii/PSColorizer/blob/master/logo.png'
-
-        }
+      IconUri    = 'https://github.com/2chevskii/PSColorizer/blob/master/logo.png'
 
     }
-    HelpInfoURI       = 'https://github.com/2chevskii/PSColorizer#readme'
+
+  }
+  HelpInfoURI       = 'https://github.com/2chevskii/PSColorizer#readme'
 }
