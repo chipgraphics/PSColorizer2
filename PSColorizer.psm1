@@ -29,7 +29,7 @@ function Write-Colorized {
     [string]$Message,
     [Parameter(Position = 1, ValueFromPipeline)]
     [ConsoleColor]$DefaultColor,
-    [Parameter]
+    [Parameter(Mandatory = $false)]
     [switch]$NoNewLine
   )
 

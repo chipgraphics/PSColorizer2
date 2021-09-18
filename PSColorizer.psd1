@@ -11,7 +11,7 @@
 @{
   RootModule        = 'PSColorizer.psm1'
 
-  ModuleVersion     = '1.2.0'
+  ModuleVersion     = '1.2.1'
 
   GUID              = 'f1cdadff-6d3e-4ae8-bfe6-98b7717a72c2'
 
