@@ -1,13 +1,13 @@
 #requires -modules PSScriptAnalyzer
 
-Import-Module -FullyQualifiedName './PSColorizer.psd1'
+Import-Module -FullyQualifiedName './PSColorizer2.psd1'
 Import-Module -Name 'PSScriptAnalyzer'
 
-$manifest = Test-ModuleManifest './PSColorizer.psd1'
+$manifest = Test-ModuleManifest './PSColorizer2.psd1'
 
 $module_version = $manifest.Version
 
-Write-Colorized -Message ('Publishing PSColorizer v<yellow>' + $module_version + '</yellow>...')
+Write-Colorized -Message ('Publishing PSColorizer2 v<yellow>' + $module_version + '</yellow>...')
 
 $api_key_path = Join-Path $PSScriptRoot '.api-key'
 
@@ -22,15 +22,15 @@ if($env:PS_API_KEY) {
     exit 1
 }
 
-Write-Colorized "API key found! ($($api_key.Substring(0, 6)))"
+Write-Colorized2 "API key found! ($($api_key.Substring(0, 6)))"
 
-Write-Colorized "Running PSScriptAnalyzer on module..."
+Write-Colorized2 "Running PSScriptAnalyzer on module..."
 $analysis = Invoke-ScriptAnalyzer -Path 'PSColorizer.psm1' -IncludeDefaultRules -CustomRulePath './' -Verbose
 
 if($null -ne $analysis) {
-    Write-Colorized 'Found rule violations in module file. Fix them before publishing module!' -DefaultColor Red
+    Write-Colorized2 'Found rule violations in module file. Fix them before publishing module!' -DefaultColor Red
     exit 1
 }
 
-Write-Colorized 'Publishing module...'
+Write-Colorized2 'Publishing module...'
 Publish-Module -Path '.' -NuGetApiKey $api_key -Verbose
